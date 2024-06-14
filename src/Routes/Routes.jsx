@@ -3,8 +3,11 @@ import Main from "../Layout/Main";
 import Blogs from "../pages/Blog/Blogs";
 import Categorys from "../pages/Category/Categorys";
 import Contact from "../pages/Contact/Contact";
+import CategoryProducts from "../pages/Home/Category/CategoryProducts";
 import Home from "../pages/Home/Home/Home";
-import Shop from "../pages/Shop/Shop";
+import Login from "../pages/Login/Login/Login";
+import Register from "../pages/Login/Register/Register";
+import Products from "../pages/Shop/Products/Products";
 
 const router = createBrowserRouter([
     {
@@ -21,11 +24,16 @@ const router = createBrowserRouter([
             },
             {
                 path: 'shop',
-                element: <Shop />
+                element: <Products />
             },
             {
                 path: 'categories',
                 element: <Categorys />
+            },
+            {
+                path: 'categories/:category',
+                element: <CategoryProducts />,
+                loader:({params}) => fetch(`http://localhost:5000/categories/${params.category}`)
             },
             {
                 path: 'blogs',
@@ -34,6 +42,14 @@ const router = createBrowserRouter([
             {
                 path: 'contact',
                 element: <Contact />
+            },
+            {
+                path: 'login',
+                element: <Login />
+            },
+            {
+                path: 'register',
+                element: <Register />
             },
         ]
     }

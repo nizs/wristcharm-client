@@ -48,18 +48,20 @@ const Navbar = () => {
                             <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
                         </div>
                     </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                        <li>
+                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-sm w-52">
+                        <li className='hover:bg-primary hover:text-white rounded-sm'>
                             <a className="justify-between">
                                 Profile
                                 <span className="badge">New</span>
                             </a>
                         </li>
-                        <li><a>Settings</a></li>
-                        <li><a>Logout</a></li>
+                        <li className='hover:bg-primary hover:text-white rounded-sm'><a>Settings</a></li>
+                        <li className='hover:bg-primary hover:text-white rounded-sm'><a>Logout</a></li>
                     </ul>
                 </div>
-                <Link className="ml-2 btn text-white bg-primary border-0 hover:bg-primarylight">Login</Link>
+                <Link className="ml-2 btn text-white bg-primary border-0 rounded-sm hover:bg-primary-light">
+                    Login
+                </Link>
             </div>
         </div>
     );
