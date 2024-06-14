@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layout/Main";
 import Blogs from "../pages/Blog/Blogs";
-import Categorys from "../pages/Category/Categorys";
 import Contact from "../pages/Contact/Contact";
 import CategoryProducts from "../pages/Home/Category/CategoryProducts";
 import Home from "../pages/Home/Home/Home";
 import Login from "../pages/Login/Login/Login";
 import Register from "../pages/Login/Register/Register";
 import Products from "../pages/Shop/Products/Products";
+import WcCategorys from "../pages/WcCategory/WcCategorys";
 
 const router = createBrowserRouter([
     {
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'categories',
-                element: <Categorys />
+                element: <WcCategorys />
             },
             {
                 path: 'categories/:category',

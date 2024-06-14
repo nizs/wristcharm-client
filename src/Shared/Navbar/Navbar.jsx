@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LiaShoppingBagSolid } from "react-icons/lia";
+import useAuth from '../../hooks/useAuth';
 
 const Navbar = () => {
-
+    const { user, logOut } = useAuth();
     const menuitem = <>
         <Link className='text-[17px] font-semibold' to='home'><li><a>Home</a></li></Link>
         <Link className='text-[17px] font-semibold' to='shop'><li><a>Shop</a></li></Link>
@@ -11,6 +12,14 @@ const Navbar = () => {
         <Link className='text-[17px] font-semibold' to='blogs'><li><a>Blogs</a></li></Link>
         <Link className='text-[17px] font-semibold' to='contact'><li><a>Contact</a></li></Link>
     </>
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     return (
         <div className="navbar bg-base-100 max-w-screen-xl mx-auto">
@@ -42,26 +51,31 @@ const Navbar = () => {
                         </div>
                     </div>
                 </Link>
-                <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img alt="Tailwind CSS Navbar component" src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-                        </div>
-                    </div>
-                    <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-sm w-52">
-                        <li className='hover:bg-primary hover:text-white rounded-sm'>
-                            <a className="justify-between">
-                                Profile
-                                <span className="badge">New</span>
-                            </a>
-                        </li>
-                        <li className='hover:bg-primary hover:text-white rounded-sm'><a>Settings</a></li>
-                        <li className='hover:bg-primary hover:text-white rounded-sm'><a>Logout</a></li>
-                    </ul>
+                <div className="dropdown dropdown-end flex">
+                    {
+                        user ?
+                            <>
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img alt="Tailwind CSS Navbar component" src={user?.photoURL} />
+                                    </div>
+                                </div>
+                                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[2] p-2 shadow bg-base-100 rounded-sm w-52">
+                                    <li className='hover:bg-primary hover:text-white rounded-sm'>
+                                        <a className="justify-between">
+                                            Profile
+                                            <span className="badge">New</span>
+                                        </a>
+                                    </li>
+                                    <li className='hover:bg-primary hover:text-white rounded-sm'><a>Settings</a></li>
+                                    <li onClick={handleLogout} className='hover:bg-primary hover:text-white rounded-sm'><a>Logout</a></li>
+                                </ul>
+                            </> :
+                            <>
+                                <Link to='/login'><a className="btn tn-outline bg-primary hover:bg-primary-light rounded-sm text-white mr-2">Login</a></Link>
+                            </>
+                    }
                 </div>
-                <Link className="ml-2 btn text-white bg-primary border-0 rounded-sm hover:bg-primary-light">
-                    Login
-                </Link>
             </div>
         </div>
     );
