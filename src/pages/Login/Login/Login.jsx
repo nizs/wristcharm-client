@@ -61,7 +61,7 @@ const Login = () => {
     return (
         <>
             <Helmet>
-                <title>Delizia | Login</title>
+                <title>WristCharm | Login</title>
             </Helmet>
             <div className="hero min-h-screen ">
                 <div className="hero-content flex-col lg:flex-row">

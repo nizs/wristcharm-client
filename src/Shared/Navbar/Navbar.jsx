@@ -2,9 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LiaShoppingBagSolid } from "react-icons/lia";
 import useAuth from '../../hooks/useAuth';
+import useCart from '../../hooks/useCart';
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const [data] = useCart();
     const menuitem = <>
         <Link className='text-[17px] font-semibold' to='home'><li><a>Home</a></li></Link>
         <Link className='text-[17px] font-semibold' to='shop'><li><a>Shop</a></li></Link>
@@ -41,11 +43,11 @@ const Navbar = () => {
             </div>
             <div className="navbar-end">
                 {/* cart */}
-                <Link to=''>
+                <Link to='/dashboard/carts'>
                     <div className="mr-6">
                         <div className="relative py-2">
                             <div className="t-0 absolute left-3">
-                                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-red-500 p-3 text-xs text-white">0</p>
+                                <p className="flex h-2 w-2 items-center justify-center rounded-full bg-primary p-3 text-xs text-white">{data.length}</p>
                             </div>
                             <LiaShoppingBagSolid className='mt-4 h-6 w-6' />
                         </div>
